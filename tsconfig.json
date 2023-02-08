@@ -1,0 +1,57 @@
+// {
+//    "compilerOptions": {
+//       "esModuleInterop": true,
+//       "lib": ["es2020",],
+//       "target": "esnext",
+//       "preserveConstEnums": true,
+//       "module": "ES2022",
+//       "moduleResolution": "node",
+//       "strict": true,
+//       "outDir": "./build",
+//       "emitDecoratorMetadata": true,
+//       "experimentalDecorators": true,
+//       "sourceMap": true,
+//       "types": ["node"],
+//    },
+//    "exclude": ["node_modules"],
+// }
+
+// {
+//    "compilerOptions": {
+//      "esModuleInterop": true,
+//      "lib": ["es2020"],
+//      "module": "ES2022",
+//      "preserveConstEnums": true,
+//      "moduleResolution": "node",
+//      "strict": true,
+//      "sourceMap": true,
+//      "target": "esnext",
+//      "emitDecoratorMetadata": true,
+//      "experimentalDecorators": true,
+//      "strictPropertyInitialization": false,
+//      "types": ["node"],
+//      "outDir": "dist"
+//    },
+//    "include": ["src/**/*"],
+//    "exclude": ["node_modules"]
+//  }
+
+{
+   "compilerOptions": {
+     "esModuleInterop": true,
+     "lib": ["es2020"],
+     "module": "CommonJS",
+     "preserveConstEnums": true,
+     "moduleResolution": "node",
+     "strict": true,
+     "sourceMap": true,
+     "target": "es2017",
+     "emitDecoratorMetadata": true,
+     "experimentalDecorators": true,
+     "strictPropertyInitialization": false,
+     "types": ["node"],
+     "outDir": "dist"
+   },
+   "include": ["src/**/*"],
+   "exclude": ["node_modules"]
+ }

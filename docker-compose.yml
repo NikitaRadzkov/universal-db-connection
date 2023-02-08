@@ -1,0 +1,52 @@
+version: '3.7'
+services:
+  postgres:
+    image: postgres:12
+    environment:
+      POSTGRES_USER: test
+      POSTGRES_PASSWORD: test
+      POSTGRES_DB: test
+    ports:
+      - "5432:5432"
+  mysql:
+    image: mysql:8
+    environment:
+      MYSQL_USER: test
+      MYSQL_ROOT_PASSWORD: test
+      MYSQL_DATABASE: test
+    ports:
+      - "3306:3306"
+  # mssql:
+  #   image: mcr.microsoft.com/mssql/server:2017-latest
+  #   environment:
+  #     ACCEPT_EULA: "Y"
+  #     SA_PASSWORD: Test12345
+  #   ports:
+  #     - "1433:1433"
+  # sqlite:
+  #   image: linuxserver/sqlitebrowser
+  #   volumes:
+  #     - ./data:/config/sqlite
+  #   ports:
+  #     - "8080:8080"
+  mariadb:
+    image: mariadb:10.5
+    environment:
+      MARIADB_USER: root
+      MARIADB_ROOT_PASSWORD: test
+      MYSQL_TCP_PORT: 3307
+      MARIADB_DATABASE: test
+    ports:
+      - "3307:3307"
+  jet-db:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    depends_on:
+      - postgres
+      - mysql
+      # - mssql
+      # - sqlite
+      - mariadb
