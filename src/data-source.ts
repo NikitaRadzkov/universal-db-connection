@@ -54,13 +54,16 @@ export const MSSQLDataSource = new DataSource({
     host: "localhost",
     port: 1433,
     username: "SA",
-    password: "Test12345",
-    database: "test",
+    password: "h*Kz53Vl164*",
+    database: "master",
     synchronize: true,
     logging: false,
     entities: [User, Photo, PhotoMetadata, Author, Album],
     migrations: [],
-    subscribers: []
+    subscribers: [],
+    options: {
+        encrypt: false
+    }
 })
 
 export const SQLiteDataSource = new DataSource({
