@@ -28,9 +28,9 @@ export class Photo {
     @ManyToMany(() => Album, (album) => album.photos)
     albums: Album[]
 
-    @CreateDateColumn({ type: "timestamp", default: () => "CURRENT_TIMESTAMP(6)" })
+    @CreateDateColumn()
     created_at: Date;
 
-    @UpdateDateColumn({ type: "timestamp", default: () => "CURRENT_TIMESTAMP(6)", onUpdate: "CURRENT_TIMESTAMP(6)" })
+    @UpdateDateColumn()
     updated_at: Date;
 }

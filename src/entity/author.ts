@@ -19,9 +19,9 @@ export class Author {
   @OneToMany(() => Photo, (photo) => photo.author) // note: we will create author property in the Photo class below
   photos: Photo[]
 
-  @CreateDateColumn({ type: "timestamp", default: () => "CURRENT_TIMESTAMP(6)" })
+  @CreateDateColumn()
   created_at: Date;
 
-  @UpdateDateColumn({ type: "timestamp", default: () => "CURRENT_TIMESTAMP(6)", onUpdate: "CURRENT_TIMESTAMP(6)" })
+  @UpdateDateColumn()
   updated_at: Date;
 }
