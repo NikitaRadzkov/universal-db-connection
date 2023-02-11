@@ -17,6 +17,7 @@
    },
    "scripts": {
       "start": "ts-node src/index.ts",
+      "drop": "ts-node src/drop-db.ts",
       "typeorm": "typeorm-ts-node-commonjs"
    }
 }
