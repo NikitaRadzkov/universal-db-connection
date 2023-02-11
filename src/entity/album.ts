@@ -5,21 +5,21 @@ import {
   ManyToMany,
   JoinTable,
   CreateDateColumn,
-  UpdateDateColumn,
-} from "typeorm"
-import { Photo } from "./photo"
+  UpdateDateColumn
+} from 'typeorm';
+import { Photo } from './photo';
 
 @Entity()
 export class Album {
   @PrimaryGeneratedColumn()
-  id: number
+  id: number;
 
   @Column()
-  name: string
+  name: string;
 
-  @ManyToMany(() => Photo, (photo) => photo.albums)
+  @ManyToMany(() => Photo, photo => photo.albums)
   @JoinTable()
-  photos: Photo[]
+  photos: Photo[];
 
   @CreateDateColumn()
   created_at: Date;

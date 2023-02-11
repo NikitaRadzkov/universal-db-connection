@@ -6,20 +6,20 @@ export enum seasons {
 }
 
 const randomAuthor = (count: number) => {
-  const array = []
-  const names = ['John Doe', 'Jane Smith', 'Jim Johnson', 'Jill Williams', 'Sarah Davis']
+  const array = [];
+  const names = ['John Doe', 'Jane Smith', 'Jim Johnson', 'Jill Williams', 'Sarah Davis'];
 
   for (let i = 0; i < count; i++) {
-    const name = names[Math.floor(Math.random() * names.length)]
+    const name = names[Math.floor(Math.random() * names.length)];
 
-    array.push({ name })
+    array.push({ name });
   }
 
-  return array
-}
+  return array;
+};
 
 const randomUsers = (count: number) => {
-  const array = []
+  const array = [];
   const firstNames = ['John', 'Jane', 'Jim', '', 'Jill', 'Joe', '', 'Sarah', 'Michael', 'Emily'];
   const lastNames = ['Doe', 'Smith', 'Johnson', 'Williams', '', '', 'Davis', 'Miller', 'Wilson', 'Taylor'];
 
@@ -32,7 +32,7 @@ const randomUsers = (count: number) => {
   }
 
   return array;
-}
+};
 
 const randomPhotos = (count: number) => {
   const array = [];
@@ -49,7 +49,7 @@ const randomPhotos = (count: number) => {
     'This is a sample description for File 9',
     'This is a sample description for File 10'
   ];
-  const filenames = ['file_1.txt', 'file_2.txt', 'file_3.txt', 'file_4.txt', 'file_5.txt', 'file_6.txt', 'file_7.txt']
+  const filenames = ['file_1.txt', 'file_2.txt', 'file_3.txt', 'file_4.txt', 'file_5.txt', 'file_6.txt', 'file_7.txt'];
 
   for (let i = 0; i < count; i++) {
     const name = names[Math.floor(Math.random() * names.length)];
@@ -62,35 +62,34 @@ const randomPhotos = (count: number) => {
   }
 
   return array;
-}
+};
 
 const randomPhotoMetaData = (count: number) => {
-  const array = []
-  const heights = [640, 720, 1080]
-  const widths = [480, 675, 800, 1080]
-  const orientations = ['portrait', 'landscape']
-  const isCompressed = [true, false]
-  const comments = ['Amazing scenery in the mountains!', 'The sunset was breathtaking.', 'So much fun at the beach with friends!']
+  const array = [];
+  const heights = [640, 720, 1080];
+  const widths = [480, 675, 800, 1080];
+  const orientations = ['portrait', 'landscape'];
+  const isCompressed = [true, false];
+  const comments = [
+    'Amazing scenery in the mountains!',
+    'The sunset was breathtaking.',
+    'So much fun at the beach with friends!'
+  ];
 
   for (let i = 0; i < count; i++) {
-    const height = heights[Math.floor(Math.random() * heights.length)]
-    const width = widths[Math.floor(Math.random() * widths.length)]
+    const height = heights[Math.floor(Math.random() * heights.length)];
+    const width = widths[Math.floor(Math.random() * widths.length)];
     const orientation = orientations[Math.floor(Math.random() * orientations.length)];
-    const compressed = isCompressed[Math.floor(Math.random() * isCompressed.length)]
-    const comment = comments[Math.floor(Math.random() * comments.length)]
+    const compressed = isCompressed[Math.floor(Math.random() * isCompressed.length)];
+    const comment = comments[Math.floor(Math.random() * comments.length)];
 
-    array.push({ height, width, orientation, compressed, comment })
+    array.push({ height, width, orientation, compressed, comment });
   }
 
-  return array
-}
+  return array;
+};
 
-const albums = [
-  { name: seasons.summer },
-  { name: seasons.autumn },
-  { name: seasons.spring },
-  { name: seasons.winter },
-]
+const albums = [{ name: seasons.summer }, { name: seasons.autumn }, { name: seasons.spring }, { name: seasons.winter }];
 
 const users = randomUsers(20);
 const photos = randomPhotos(20);
@@ -103,4 +102,4 @@ export default {
   albums,
   photoMetaData,
   authors
-}
+};

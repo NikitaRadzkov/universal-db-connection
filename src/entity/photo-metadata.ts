@@ -5,33 +5,33 @@ import {
   OneToOne,
   JoinColumn,
   CreateDateColumn,
-  UpdateDateColumn,
-} from "typeorm"
-import { Photo } from "./photo"
+  UpdateDateColumn
+} from 'typeorm';
+import { Photo } from './photo';
 
 @Entity()
 export class PhotoMetadata {
   @PrimaryGeneratedColumn()
-  id: number
+  id: number;
 
-  @Column("int")
-  height: number
+  @Column('int')
+  height: number;
 
-  @Column("int")
-  width: number
-
-  @Column()
-  orientation: string
+  @Column('int')
+  width: number;
 
   @Column()
-  compressed: boolean
+  orientation: string;
 
   @Column()
-  comment: string
+  compressed: boolean;
+
+  @Column()
+  comment: string;
 
   @OneToOne(() => Photo)
   @JoinColumn()
-  photo: Photo
+  photo: Photo;
 
   @CreateDateColumn()
   created_at: Date;

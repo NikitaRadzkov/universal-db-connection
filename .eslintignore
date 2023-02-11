@@ -21,3 +21,5 @@ Dockerfile
 *.svg
 *.css
 *.html
+*.yml
+*.yaml
