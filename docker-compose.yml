@@ -16,19 +16,19 @@ services:
       MYSQL_DATABASE: test
     ports:
       - "3306:3306"
-  # mssql:
-  #   image: mcr.microsoft.com/mssql/server:2017-latest
-  #   environment:
-  #     ACCEPT_EULA: "Y"
-  #     SA_PASSWORD: Test12345
-  #   ports:
-  #     - "1433:1433"
-  # sqlite:
-  #   image: linuxserver/sqlitebrowser
-  #   volumes:
-  #     - ./data:/config/sqlite
-  #   ports:
-  #     - "8080:8080"
+  mssql:
+    image: mcr.microsoft.com/mssql/server:2017-latest
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_SA_PASSWORD: h*Kz53Vl164*
+    ports:
+      - "1433:1433"
+  sqlite:
+    image: linuxserver/sqlitebrowser
+    volumes:
+      - ./data:/config/sqlite
+    ports:
+      - "8080:8080"
   mariadb:
     image: mariadb:10.5
     environment:
@@ -47,6 +47,6 @@ services:
     depends_on:
       - postgres
       - mysql
-      # - mssql
-      # - sqlite
+      - mssql
+      - sqlite
       - mariadb
