@@ -1,78 +1,108 @@
-import { DataSource } from "typeorm"
+import { DataSource, In } from "typeorm"
 import { PostgresSQLDataSource, MySQLDataSource, MariaDBDataSource, MSSQLDataSource, SQLiteDataSource } from "./data-source"
 import { Album } from "./entity/album"
 import { Author } from "./entity/author"
 import { Photo } from "./entity/photo"
 import { PhotoMetadata } from "./entity/photo-metadata"
 import { User } from "./entity/user"
+import mock, { seasons } from "./mock/data"
 
 const initDB = async (db: DataSource) => {
-    await db.initialize().then(async () => {
+    try {
+        await db.initialize()
 
-        const user = new User()
-        user.firstName = "Timber"
-        user.lastName = "Saw"
-        user.age = 25
-        await db.manager.save(user)
+        const users = []
 
-        const users = await db.manager.find(User)
-        console.log("Loaded users: ", users)
+        for (let i = 0; i < mock.users.length; i++) {
+            const user = new User()
+            user.firstName = mock.users[i].firstName
+            user.lastName = mock.users[i].lastName
+            user.age = mock.users[i].age
+            users.push(user)
+        }
 
-        // create a few albums
-        const album1 = new Album()
-        album1.name = "Bears"
-        await db.manager.save(album1)
+        await db.manager.save(users)
 
-        const album2 = new Album()
-        album2.name = "Me"
-        await db.manager.save(album2)
+        // Create a few albums
+        const albums = []
 
-        const author = new Author()
-        author.name = "Test Name"
-        await db.manager.save(author)
+        for (let i = 0; i < mock.albums.length; i++) {
+            const album = new Album()
+            album.name = mock.albums[i].name
 
-        // create a few photos
-        const photo = new Photo()
-        photo.name = "Me and Bears"
-        photo.description = "I am near polar bears"
-        photo.filename = "photo-with-bears.jpg"
-        photo.views = 1
-        photo.isPublished = true
-        photo.author = author
-        photo.albums = [album1, album2]
+            albums.push(album)
+        }
 
-        await db.manager.save(photo)
+        await db.manager.save(albums)
 
-        // create a photo metadata
-        const metadata = new PhotoMetadata()
-        metadata.height = 640
-        metadata.width = 480
-        metadata.compressed = true
-        metadata.comment = "cybershoot"
-        metadata.orientation = "portrait"
-        metadata.photo = photo // this way we connect them
+        //Create a few authors
+        const authors = []
 
-        // get entity repositories
-        const photoRepository = db.getRepository(Photo)
-        const metadataRepository = db.getRepository(PhotoMetadata)
+        for (let i = 0; i < mock.authors.length; i++) {
+            const author = new Author()
+            author.name = mock.authors[i].name
 
-        // first we should save a photo
-        await photoRepository.save(photo)
-        // photo is saved. Now we need to save a photo metadata
-        await metadataRepository.save(metadata)
+            authors.push(author)
+        }
+        await db.manager.save(authors)
+        
+        // Create a photos and metadata
+        const photos = []
+        const photoMetadata = []
+        for (let i = 0; i < mock.photoMetaData.length; i++) {
+            const metadata = new PhotoMetadata()
+            const photo = new Photo()
+            const author = await db.getRepository(Author).findOne({ where: { id: i }}) as Author;
+            
+            const randomSeasons = []
+            const seasonsArray = Object.values(seasons)
 
-        // done
-        console.log(`Data saved in ${db.options.type}`)
+            for (let i = 0; i < 2; i++) {
+                const randomIndex = Math.floor(Math.random() * seasonsArray.length);
+                randomSeasons.push(seasonsArray[randomIndex]);
+                seasonsArray.splice(randomIndex, 1);
+            }
+            
     
-    }).catch(error => console.log(error))
+            photo.name = mock.photos[i].name
+            photo.description = mock.photos[i].description
+            photo.filename = mock.photos[i].filename
+            photo.views = mock.photos[i].views
+            photo.isPublished = mock.photos[i].isPublished
+            photo.author = author
+            photo.albums = await db.getRepository(Album).find({ where: {
+                name: In(randomSeasons)
+            } })
+    
+            photos.push(photo)
+    
+            metadata.height = mock.photoMetaData[i].height
+            metadata.width = mock.photoMetaData[i].width
+            metadata.compressed = mock.photoMetaData[i].compressed
+            metadata.comment = mock.photoMetaData[i].comment
+            metadata.orientation = mock.photoMetaData[i].orientation
+            metadata.photo = photo;
+
+            photoMetadata.push(metadata)
+        }
+        await db.manager.save(photos)
+        await db.manager.save(photoMetadata)
+
+        await db.destroy();
+
+        // Done
+        console.log(`Data saved in ${db.options.type}`)
+    } catch (err) {
+        console.error(err)
+    }
 }
 
 const initialize = async () => {
     await initDB(PostgresSQLDataSource)
     await initDB(MySQLDataSource)
     await initDB(MariaDBDataSource)
-    // await initDB(SQLiteDataSource)
-    // await initDB(MSSQLDataSource)
+    await initDB(SQLiteDataSource)
+    await initDB(MSSQLDataSource)
 }
 
 initialize()
