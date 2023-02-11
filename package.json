@@ -4,6 +4,12 @@
    "description": "Awesome project developed with TypeORM.",
    "devDependencies": {
       "@types/node": "^16.11.10",
+      "@typescript-eslint/eslint-plugin": "^5.51.0",
+      "@typescript-eslint/parser": "^5.51.0",
+      "eslint": "^8.34.0",
+      "eslint-config-prettier": "^8.6.0",
+      "eslint-plugin-import": "^2.27.5",
+      "eslint-plugin-prettier": "^4.2.1",
       "ts-node": "10.7.0",
       "typescript": "4.5.2"
    },
@@ -18,6 +24,10 @@
    "scripts": {
       "start": "ts-node src/index.ts",
       "drop": "ts-node src/drop-db.ts",
-      "typeorm": "typeorm-ts-node-commonjs"
+      "typeorm": "typeorm-ts-node-commonjs",
+      "lint": "eslint \"./**\" --max-warnings=0",
+      "format": "eslint \"./**\" --fix --max-warnings=0",
+      "tsc:check": "npx tsc --project ./tsconfig.json --noEmit",
+      "tsc:watch": "npm run tsc:check -- --watch"
    }
 }
