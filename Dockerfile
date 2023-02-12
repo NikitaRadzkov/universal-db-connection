@@ -13,5 +13,3 @@ RUN npm install -g node-gyp
 RUN npm install
 
 COPY . .
-
-# CMD [ "npm", "run", "start" ]
