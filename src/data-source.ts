@@ -8,7 +8,7 @@ import { Album } from './entity/album';
 
 export const PostgresSQLDataSource = new DataSource({
   type: 'postgres',
-  host: 'localhost',
+  host: 'postgres',
   port: 5432,
   username: 'test',
   password: 'test',
@@ -22,7 +22,7 @@ export const PostgresSQLDataSource = new DataSource({
 
 export const MySQLDataSource = new DataSource({
   type: 'mysql',
-  host: 'localhost',
+  host: 'mysql',
   port: 3306,
   username: 'root',
   password: 'test',
@@ -36,7 +36,7 @@ export const MySQLDataSource = new DataSource({
 
 export const MariaDBDataSource = new DataSource({
   type: 'mariadb',
-  host: 'localhost',
+  host: 'mariadb',
   port: 3307,
   username: 'root',
   password: 'test',
@@ -50,7 +50,7 @@ export const MariaDBDataSource = new DataSource({
 
 export const MSSQLDataSource = new DataSource({
   type: 'mssql',
-  host: 'localhost',
+  host: 'mssql',
   port: 1433,
   username: 'SA',
   password: 'h*Kz53Vl164*',

@@ -42,6 +42,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    command: bash ./scripts/wait-connection.sh;'
     ports:
       - "3000:3000"
     depends_on:
