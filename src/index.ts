@@ -17,6 +17,7 @@ const initDB = async (db: DataSource) => {
   try {
     await db.initialize();
 
+    // Create a users albums
     const users = [];
 
     for (let i = 0; i < mock.users.length; i++) {
