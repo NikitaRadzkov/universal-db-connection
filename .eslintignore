@@ -24,3 +24,4 @@ Dockerfile
 *.yml
 *.yaml
 *.sh
+*.env
