@@ -1,4 +1,5 @@
 import 'reflect-metadata';
+import * as dotenv from 'dotenv';
 import { DataSource } from 'typeorm';
 import { Photo } from './entity/photo';
 import { PhotoMetadata } from './entity/photo-metadata';
@@ -6,13 +7,15 @@ import { User } from './entity/user';
 import { Author } from './entity/author';
 import { Album } from './entity/album';
 
+dotenv.config();
+
 export const PostgresSQLDataSource = new DataSource({
   type: 'postgres',
-  host: 'postgres',
-  port: 5432,
-  username: 'test',
-  password: 'test',
-  database: 'test',
+  host: process.env.POSTGRES_HOST,
+  port: Number(process.env.POSTGRES_PORT),
+  username: process.env.POSTGRES_USER,
+  password: process.env.POSTGRES_PASSWORD,
+  database: process.env.POSTGRES_DB,
   synchronize: true,
   logging: false,
   entities: [User, Photo, PhotoMetadata, Author, Album],
@@ -22,11 +25,11 @@ export const PostgresSQLDataSource = new DataSource({
 
 export const MySQLDataSource = new DataSource({
   type: 'mysql',
-  host: 'mysql',
-  port: 3306,
-  username: 'root',
-  password: 'test',
-  database: 'test',
+  host: process.env.MYSQL_HOST,
+  port: Number(process.env.MYSQL_PORT),
+  username: process.env.MYSQL_USER,
+  password: process.env.MYSQL_ROOT_PASSWORD,
+  database: process.env.MYSQL_DATABASE,
   synchronize: true,
   logging: false,
   entities: [User, Photo, PhotoMetadata, Author, Album],
@@ -36,11 +39,11 @@ export const MySQLDataSource = new DataSource({
 
 export const MariaDBDataSource = new DataSource({
   type: 'mariadb',
-  host: 'mariadb',
-  port: 3307,
-  username: 'root',
-  password: 'test',
-  database: 'test',
+  host: process.env.MARIADB_HOST,
+  port: Number(process.env.MYSQL_TCP_PORT),
+  username: process.env.MARIADB_USER,
+  password: process.env.MARIADB_ROOT_PASSWORD,
+  database: process.env.MARIADB_DATABASE,
   synchronize: true,
   logging: false,
   entities: [User, Photo, PhotoMetadata, Author, Album],
@@ -50,11 +53,11 @@ export const MariaDBDataSource = new DataSource({
 
 export const MSSQLDataSource = new DataSource({
   type: 'mssql',
-  host: 'mssql',
-  port: 1433,
-  username: 'SA',
-  password: 'h*Kz53Vl164*',
-  database: 'master',
+  host: process.env.MSSQL_HOST,
+  port: Number(process.env.MSSQL_PORT),
+  username: process.env.MSSQL_USER,
+  password: process.env.MSSQL_SA_PASSWORD,
+  database: process.env.MSSQL_DATABASE,
   synchronize: true,
   logging: false,
   entities: [User, Photo, PhotoMetadata, Author, Album],
