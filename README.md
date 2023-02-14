@@ -17,7 +17,7 @@ This repository contains code for connecting to SQL databases and populating tab
 
 Often on projects, we need to check data in the database, use various filters for data types, process them and write checks on them. For these purposes, this repository is created. You can add any data that we need for tests. Sometimes this is useful when data can be integrated into the application in On-premise mode. Or add our database to the test environment. By default, I have added One to One, Many to One, One to Many, Many to Many relationships and number, string, Date, empty, null data types. You can change them in the entity folder if needed.
 
-Also, this repository is suitable for training sil queries. You don't have to worry about database configurations, just deploy them in a container and get started.
+Also, this repository is suitable for training SQL queries. You don't have to worry about database configurations, just deploy them in a container and get started.
 
 ## How it works <a id="how_it_works"></a>
 1. A database is created in the docker container
