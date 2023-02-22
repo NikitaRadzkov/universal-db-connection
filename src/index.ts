@@ -4,7 +4,8 @@ import {
   MySQLDataSource,
   MariaDBDataSource,
   MSSQLDataSource,
-  SQLiteDataSource
+  SQLiteDataSource,
+  OracleDataSource
 } from './data-source';
 import { Album } from './entity/album';
 import { Author } from './entity/author';
@@ -111,6 +112,7 @@ const initialize = async () => {
   await initDB(MariaDBDataSource);
   await initDB(SQLiteDataSource);
   await initDB(MSSQLDataSource);
+  await initDB(OracleDataSource);
 };
 
 initialize();

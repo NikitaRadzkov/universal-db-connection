@@ -3,6 +3,7 @@ import {
   MariaDBDataSource,
   MSSQLDataSource,
   MySQLDataSource,
+  OracleDataSource,
   PostgresSQLDataSource,
   SQLiteDataSource
 } from './data-source';
@@ -23,6 +24,7 @@ const dropAllDatabases = async () => {
   await dropDatabase(MariaDBDataSource);
   await dropDatabase(SQLiteDataSource);
   await dropDatabase(MSSQLDataSource);
+  await dropDatabase(OracleDataSource);
 };
 
 dropAllDatabases();

@@ -39,6 +39,22 @@ services:
       MARIADB_DATABASE: ${MARIADB_DATABASE}
     ports:
       - "${MYSQL_TCP_PORT}:${MYSQL_TCP_PORT}"
+  oracle:
+    image: container-registry.oracle.com/database/express:latest
+    environment:
+      ORACLE_PWD: ${ORACLE_PASSWORD}
+      ORACLE_ALLOW_REMOTE: true
+    ports:
+      - "3561:3561"
+      - "${ORACLE_PORT}:${ORACLE_PORT}"
+    volumes:
+      - ./data:/u01/app/oracle/oradata/XE
+      - ./scripts:/docker-entrypoint-initdb.d
+    deploy:
+      resources:
+        limits:
+          memory: 3g
+          cpus: "2"
   jet-db:
     build:
       context: .
@@ -52,3 +68,4 @@ services:
       - mssql
       - sqlite
       - mariadb
+      - oracle

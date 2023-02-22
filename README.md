@@ -13,7 +13,7 @@
   - [Mock Data](#mock_data)
 
 ## About <a id="about"></a>
-This repository contains code for connecting to SQL databases and populating tables with test data, written in the TypeORM library. (https://typeorm.io/). The logic for working with **PostgreSQL**, **MySQL**, **MariaDB**, **SQLite**, **Microsoft SQL Server**.
+This repository contains code for connecting to SQL databases and populating tables with test data, written in the TypeORM library. (https://typeorm.io/). The logic for working with **PostgreSQL**, **MySQL**, **MariaDB**, **SQLite**, **Microsoft SQL Server**, **Oracle**.
 
 Often on projects, we need to check data in the database, use various filters for data types, process them and write checks on them. For these purposes, this repository is created. You can add any data that we need for tests. Sometimes this is useful when data can be integrated into the application in On-premise mode. Or add our database to the test environment. By default, I have added One to One, Many to One, One to Many, Many to Many relationships and number, string, Date, empty, null data types. You can change them in the entity folder if needed.
 
@@ -29,7 +29,8 @@ Also, this repository is suitable for training SQL queries. You don't have to wo
 - (Windows users) [WSL2](https://docs.microsoft.com/en-us/windows/wsl/install) (Windows Subsystem for Linux). We use *Ubuntu 20.04* and you need to [use version 2 of WSL](https://docs.microsoft.com/en-us/windows/wsl/install#upgrade-version-from-wsl-1-to-wsl-2).
 - Docker. Get it for your system from [here](https://docs.docker.com/get-docker/). If you use Windows - please, [use WSL 2 based engine](https://docs.docker.com/desktop/windows/wsl/) for Docker.
 - Docker Compose. Get it for your system from [here](https://docs.docker.com/compose/install/).
-- (MacOS users) By default, Microsoft SQL Server image does not work on machines with **ARM** processors. In order to fix the compatibility bug you need to install [Docker desktop](https://docs.docker.com/desktop/install/mac-install/) version 4.16 or later. Then go to settings and enable the Features in development section enable Use Rosetta for x86/amd64 emulation on Apple Silicon and click Apply & restart button
+- (MacOS users) By default, Microsoft SQL Server and Oracle Database images does not work on machines with **ARM** processors. In order to fix the compatibility bug you need to install [Docker desktop](https://docs.docker.com/desktop/install/mac-install/) version 4.16 or later. Then go to settings and enable the Features in development section enable Use Rosetta for x86/amd64 emulation on Apple Silicon and click Apply & restart button
+- To connect to oracle follow steps 1-5 from [here](https://collabnix.com/how-to-run-oracle-database-in-a-docker-container-using-docker-compose/).
 
 ### Setup <a id="setup"></a>
 1. Clone repo
@@ -59,6 +60,7 @@ const initialize = async () => {
   await initDB(MariaDBDataSource);
   await initDB(SQLiteDataSource);
   await initDB(MSSQLDataSource);
+  await initDB(OracleDataSource);
 };
 ```
 and also add deleting the database before running in the folder `src/drop-db.ts`
@@ -69,6 +71,7 @@ const dropAllDatabases = async () => {
   await dropDatabase(MariaDBDataSource);
   await dropDatabase(SQLiteDataSource);
   await dropDatabase(MSSQLDataSource);
+  await dropDatabase(OracleDataSource);
 };
 ```
 
